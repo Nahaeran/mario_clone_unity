@@ -12,14 +12,17 @@ public class block : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision.gameObject.CompareTag("Player") && collision.transform.position.y < transform.position.y
-        && collision.gameObject.GetComponent<Player>().level > 1){
+        && collision.gameObject.GetComponent<PlayerScript>().level > 1)
+        {
             block_health -= 1;
-            Debug.Log(collision.gameObject.GetComponent<Player>().moveX);
+            Debug.Log(collision.gameObject.GetComponent<PlayerScript>());
         }
 
-        if (block_health <= 0){
+        if (block_health <= 0)
+        {
             Destroy(gameObject);
         }
     }

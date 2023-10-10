@@ -25,6 +25,7 @@ public class Flag_Interaction : MonoBehaviour
             Vector3 pos = transform.position;
             other.GetComponent<Transform>().position = new Vector3(pos.x, pos.y + transform.localScale.y / 2, pos.z);
             other.GetComponent<AutomateMovement>().state = AutomateMovement.Enemystate.dead;
+            other.GetComponent<PlayerScript>().moveX = 0;
 
             //PlayerObject.transform.position = new Vector3(pos.x, pos.y + transform.localScale.y / 2, pos.z);
 
