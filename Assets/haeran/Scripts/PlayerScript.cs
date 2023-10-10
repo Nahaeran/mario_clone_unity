@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public int level;
     public int playerSpeed = 10;
     public int playerJumpPower = 1250;
-    private float moveX;
+    
+    public float moveX;
 
     // Update is called once per frame
     void Update()

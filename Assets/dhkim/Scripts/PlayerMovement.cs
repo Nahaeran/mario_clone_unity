@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
     private new Camera camera;
     private new Rigidbody2D rigidbody;
     private new Collider2D collider;
-
     public Vector2 velocity;
     private float inputAxis;
 
