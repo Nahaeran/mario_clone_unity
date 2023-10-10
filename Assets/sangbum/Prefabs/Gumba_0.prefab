@@ -134,10 +134,10 @@ MonoBehaviour:
     m_Bits: 1
   Wallmask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 1
   Playermask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   timeBeforeDestroy: 1
   state: 1
 --- !u!61 &8817647652569953856
