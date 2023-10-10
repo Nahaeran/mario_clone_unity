@@ -9,9 +9,9 @@ public static class Extensions
         if (rigidbody.isKinematic) {
             return false;
         }
-        
-        float radius = 0.1f;
-        float distance = 0.2f;
+
+        float radius = 0.5f;
+        float distance = 0.5f;
 
         RaycastHit2D hit = Physics2D.CircleCast(rigidbody.position, radius, direction.normalized, distance, layerMask);
         return hit.collider != null && hit.rigidbody != rigidbody;
