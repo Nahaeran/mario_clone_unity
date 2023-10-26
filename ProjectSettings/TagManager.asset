@@ -8,6 +8,9 @@ TagManager:
   - Item
   - Block
   - Ground
+  - floor
+  - pipe
+  - hole
   layers:
   - Default
   - TransparentFX

@@ -24,7 +24,16 @@ public class Charcator_animation : MonoBehaviour
     void Update()
     {
         Animator animator = GetComponent<Animator>();
+        if (state == PLAYERSTATE.dead)
+        {
+            GetComponent<Collider2D>().enabled = false;
+            //GetComponent<PlayerScript>().Jump();
+            animator.SetBool("dead", true);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * 500);
+            
 
+        }
+            
         if (GetComponent<Rigidbody2D>().velocity.y != 0)
         {
             state = PLAYERSTATE.jumping;

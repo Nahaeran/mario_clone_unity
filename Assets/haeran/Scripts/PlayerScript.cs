@@ -7,7 +7,6 @@ public class PlayerScript : MonoBehaviour
     public int level;
     public int playerSpeed = 10;
     public int playerJumpPower = 800;
-    
     public float moveX;
     // Update is called once per frame
     public bool is_jumping = true;
@@ -37,7 +36,7 @@ public class PlayerScript : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
     }
 
-    void Jump()
+    public void Jump()
     {
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
     }
