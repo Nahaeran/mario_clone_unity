@@ -12,6 +12,8 @@ public class CountingDown : MonoBehaviour
     public float selectCountdown;
     public GameObject BlackScreen;
     public GameObject GameOverText;
+    public GameObject RestartText;
+    public GameObject Button;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,8 @@ public class CountingDown : MonoBehaviour
         {
             BlackScreen.active = true;
             GameOverText.active = true;
+            RestartText.active = true;
+            Button.active = true;
             Invoke("End_time", 3);
         }
         else
