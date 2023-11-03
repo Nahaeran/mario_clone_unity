@@ -19,7 +19,6 @@ public class ItemBlock : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && collision.transform.position.y < transform.position.y)
         {
             block_health -= 1;
-            Debug.Log(collision.gameObject.GetComponent<PlayerMoveCopy>());
             if (item != null){
                 Instantiate(item, gameObject.transform.position, gameObject.transform.rotation);
                 SpriteRenderer render = GetComponent<SpriteRenderer>();
