@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class Charcator_animation : MonoBehaviour
 {
-    
+    public Sprite[] sprites;
+    private SpriteRenderer spriteRenderer;
+
+    public Animator animator;
+
     public enum PLAYERSTATE 
     {
         standing,
@@ -15,49 +19,67 @@ public class Charcator_animation : MonoBehaviour
     }
     
     public PLAYERSTATE state = PLAYERSTATE.standing;
+    
 
     void Start()
     {
-        Animator animator = GetComponent<Animator>();
+        // mario initial state
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprites[0];
+
+        animator = GetComponent<Animator>();
+        
     }
     // Update is called once per frame
     void Update()
     {
-        Animator animator = GetComponent<Animator>();
+        animator.SetBool("levelup", false);
+        //mario state update
+        if (Input.GetKeyDown("p"))
+        {
+            // big mario
+            spriteRenderer.sprite = sprites[1];
+            animator.SetBool("levelup", true);
+
+        }
+        else if (Input.GetKeyDown("g"))
+        {
+            // small mario
+            spriteRenderer.sprite = sprites[0];
+        }
+
         if (state == PLAYERSTATE.dead)
         {
             GetComponent<Collider2D>().enabled = false;
-            //GetComponent<PlayerScript>().Jump();
             animator.SetBool("dead", true);
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * 500);
-            
+
 
         }
-            
+
         if (GetComponent<Rigidbody2D>().velocity.y != 0)
         {
             state = PLAYERSTATE.jumping;
             animator.SetBool("jumping", true);
-        } else
+        }
+        else
         {
             state = PLAYERSTATE.walking;
             animator.SetBool("jumping", false);
         }
 
-        if (GetComponent<Rigidbody2D>().velocity.x != 0 && state != PLAYERSTATE.jumping) 
+        if (GetComponent<Rigidbody2D>().velocity.x != 0 && state != PLAYERSTATE.jumping)
         {
-            
-            state = PLAYERSTATE.walking;
-            animator.SetBool("walking" , true);
 
-        } else
+            state = PLAYERSTATE.walking;
+            animator.SetBool("walking", true);
+
+        }
+        else
         {
             state = PLAYERSTATE.standing;
             animator.SetBool("walking", false);
         }
-
-        
-
 
     }
 }
