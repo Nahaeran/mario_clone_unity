@@ -14,10 +14,12 @@ public class CountingDown : MonoBehaviour
     public GameObject GameOverText;
     public GameObject RestartText;
     public GameObject Button;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         selectCountdown = time;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void End_time()
@@ -30,11 +32,13 @@ public class CountingDown : MonoBehaviour
     {
         if (Mathf.Floor(selectCountdown) <= 0)
         {
-            BlackScreen.active = true;
-            GameOverText.active = true;
-            RestartText.active = true;
-            Button.active = true;
-            Invoke("End_time", 3);
+            SceneManager.LoadScene("Game Over Scene");
+            // audioSource.Play();
+            // BlackScreen.active = true;
+            // GameOverText.active = true;
+            // RestartText.active = true;
+            // Button.active = true;
+            // Invoke("End_time", 3);
         }
         else
         {

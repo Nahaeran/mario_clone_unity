@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
     public float moveX;
     // Update is called once per frame
     public bool is_jumping = true;
+    AudioSource audioSource;
 
     void Update()
     {
@@ -28,16 +29,18 @@ public class PlayerScript : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump"))
         {
-            if (is_jumping == false){
-                is_jumping = true;
-                Jump();
-            }
+            // if (is_jumping == false){
+            //     is_jumping = true;
+            //     Jump();
+            // }
+            Jump();
         } // playerSpeed 만큼 이동
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
     }
 
     public void Jump()
     {
+        audioSource.Play();
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
     }
     void OnCollisionEnter2D(Collision2D col) {    
@@ -49,7 +52,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     
