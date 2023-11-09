@@ -30,7 +30,7 @@ public class AutomateMovement : MonoBehaviour
 
 
     //BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-
+    
     public void Crush()
     {
         state = Enemystate.dead;
@@ -105,13 +105,20 @@ public class AutomateMovement : MonoBehaviour
                 if (isWalkingLeft)
                 {
                     pos.x -= velocity.x * Time.deltaTime;
-                    scale.x = -1;
+                    if (scale.x > 0)
+                    {
+                        scale.x *= -1;
+                    } 
+                    
                 }
                 // 오른쪽으로 움직이고 있다면 
                 else
                 {
                     pos.x += velocity.x * Time.deltaTime;
-                    scale.x = 1;
+                    if (scale.x < 0)
+                    {
+                        scale.x *= -1;
+                    }
                 }
             }
             // y의 속도가 0보다 적다면 == 떨어지는 중이라면 
@@ -218,21 +225,21 @@ public class AutomateMovement : MonoBehaviour
             }
             //Debug.Log(hitRay.collider.name);
 
-            if (hitRay.collider.tag == "Player")
-            {
+            //if (hitRay.collider.tag == "Player")
+            //{
                 
-                // Animator animator = GetComponent<Animator>();
-                // animator.SetBool("Is dead", true);
-                Debug.Log("발견");
-                // state = Enemystate.dead;
+            //    // Animator animator = GetComponent<Animator>();
+            //    // animator.SetBool("Is dead", true);
+            //    Debug.Log("발견");
+            //    // state = Enemystate.dead;
                 
-                hitRay.collider.enabled = false;
-                Destroy(hitRay.collider);
-                // Crush();
+            //    hitRay.collider.enabled = false;
+            //    Destroy(hitRay.collider);
+            //    // Crush();
 
-                //LoadGameOverScene();
-                //UnityEngine.SceneManagement.SceneManager.LoadScene("Gameover");
-            }
+            //    //LoadGameOverScene();
+            //    //UnityEngine.SceneManagement.SceneManager.LoadScene("Gameover");
+            //}
             isWalkingLeft = !isWalkingLeft;
         }
 
@@ -247,9 +254,9 @@ public class AutomateMovement : MonoBehaviour
         Vector2 originRight = new Vector2(pos.x + size.x / 3, pos.y + size.y / 2);
         //Debug.Log(originCenter);
 
-        RaycastHit2D playerLeft = Physics2D.Raycast(originLeft, Vector2.up, 0.1f, Playermask);
-        RaycastHit2D playerCenter = Physics2D.Raycast(originCenter, Vector2.up, 0.1f, Playermask);
-        RaycastHit2D playerRight = Physics2D.Raycast(originRight, Vector2.up, 0.1f, Playermask);
+        RaycastHit2D playerLeft = Physics2D.Raycast(originLeft, Vector2.up, 0.3f, Playermask);
+        RaycastHit2D playerCenter = Physics2D.Raycast(originCenter, Vector2.up, 0.3f, Playermask);
+        RaycastHit2D playerRight = Physics2D.Raycast(originRight, Vector2.up, 0.3f, Playermask);
 
         if (playerLeft.collider != null || playerCenter.collider != null || playerRight.collider != null)
         {
@@ -268,6 +275,7 @@ public class AutomateMovement : MonoBehaviour
             {
                 Debug.Log("발견 했다");
                 state = Enemystate.dead;
+                hitRay.collider.GetComponent<Rigidbody2D>().AddForce(Vector2.up * (1000 - hitRay.collider.GetComponent<Rigidbody2D>().velocity.y));
                 Crush();
             }
 

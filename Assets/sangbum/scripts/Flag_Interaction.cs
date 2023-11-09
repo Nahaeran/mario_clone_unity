@@ -27,8 +27,6 @@ public class Flag_Interaction : MonoBehaviour
             other.GetComponent<AutomateMovement>().state = AutomateMovement.Enemystate.dead;
             other.GetComponent<PlayerScript>().moveX = 0;
 
-            //PlayerObject.transform.position = new Vector3(pos.x, pos.y + transform.localScale.y / 2, pos.z);
-
             // 1초 후 게임 오버 화면으로 이동
             StartCoroutine(LoadGameOverScene());
         }

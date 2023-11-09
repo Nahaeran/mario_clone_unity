@@ -5,20 +5,23 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Item
+  - Block
+  - Ground
   - floor
   - pipe
-  - block
+  - hole
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Item
+  - Block
+  - Enemy
   - 
   - 
   - 
@@ -44,4 +47,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 1
+    uniqueID: 164953939
+    locked: 0
+  - name: 2
+    uniqueID: 1159640879
     locked: 0
