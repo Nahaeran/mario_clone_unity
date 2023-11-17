@@ -18,8 +18,7 @@ public class Charcator_animation : MonoBehaviour
         dead
     }
     
-    public PLAYERSTATE state = PLAYERSTATE.standing;
-    
+    public PLAYERSTATE state = PLAYERSTATE.standing; 
 
     void Start()
     {
@@ -27,25 +26,33 @@ public class Charcator_animation : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprites[0];
 
-        animator = GetComponent<Animator>();
-        
+        animator.SetBool("levelup", false);
     }
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("levelup", false);
+        animator = GetComponent<Animator>();
         //mario state update
         if (Input.GetKeyDown("p"))
         {
             // big mario
             spriteRenderer.sprite = sprites[1];
             animator.SetBool("levelup", true);
+            // gameObject.GetComponent<Rigidbody2D>().transform.position.y += 0.2f;
+
+
+            BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+            if (boxCollider != null)
+            {
+                boxCollider.size = new Vector2(0.3f, 0.62f);
+            }
 
         }
         else if (Input.GetKeyDown("g"))
         {
             // small mario
             spriteRenderer.sprite = sprites[0];
+            animator.SetBool("levelup", false);
         }
 
         if (state == PLAYERSTATE.dead)
